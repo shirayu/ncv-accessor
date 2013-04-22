@@ -10,7 +10,7 @@
 namespace ncva{
 
 
-    NaiveArray::NaiveArray(const char *filename, const bool write) : ifs(NULL), ofs(NULL){
+    NaiveArray::NaiveArray(const char *filename, const bool write) : ifs(NULL), ofs(NULL), filesize(0){
         if (filename == NULL){
         }
         else{
@@ -19,6 +19,8 @@ namespace ncva{
             }
             else{
         		this->ifs = new std::ifstream(filename, std::ios::binary);
+                this->filesize = (size_t) this->ifs->seekg(0, std::ios::end).tellg();
+                this->ifs->seekg(0, std::ios::beg);  
             };
         };
     };
@@ -29,10 +31,19 @@ namespace ncva{
     };
 
     void NaiveArray::save(){
-        //do nothing
+        if (this->ofs != NULL){
+            this->ofs->flush();
+        };
     };
 
     FREQUENCY NaiveArray::get(const ID_t id){
+        const size_t position = sizeof(FREQUENCY) * id;
+        if (position < this->filesize){
+            ifs->seekg(position, std::ios_base::beg);
+            FREQUENCY freq;
+            ifs->read((char *) &freq, sizeof(FREQUENCY));
+            return freq;
+        };
         return 0;
     };
 

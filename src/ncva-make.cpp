@@ -65,8 +65,8 @@ namespace ncva{
         }
        
         /////
-        const std::string out_freq = std::string(output_name) + ".freq";
         const std::string out_trie = std::string(output_name) + ".trie";
+        const std::string out_freq = std::string(output_name) + ".freq";
         std::vector<std::string> tmp;
         tmp.reserve(mymap.size());
 

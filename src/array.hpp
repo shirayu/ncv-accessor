@@ -44,6 +44,7 @@ namespace ncva{
         private:
             std::ifstream *ifs;
             std::ofstream *ofs;
+            size_t filesize;
         public:
             NaiveArray(const char *filename, const bool write);
             ~NaiveArray();

@@ -82,3 +82,13 @@ def build(bld):
         includes = 'ux/src/',
     )
 
+    bld(features = 'cxx cprogram',
+        source = ['src/ncva-read.cpp', 'src/trie.cpp', 'src/array.cpp'],
+        target = 'ncva-read',
+        cxxflags     = CXXFLAGS,
+        use = [
+            'UX',
+         ],
+        includes = 'ux/src/',
+    )
+
