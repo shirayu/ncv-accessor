@@ -8,6 +8,7 @@
 #include <fstream>
 
 #include "trie.hpp"
+#include "array.hpp"
 
 namespace ncva{
     std::vector<std::string> split(const std::string &str, const char delim){
@@ -80,15 +81,14 @@ namespace ncva{
         mytrie.save(out_trie.c_str());
 
 	    std::cerr << "Making freq..." << std::endl;
-		std::ofstream freqfile(out_freq.c_str(), std::ios::binary);
+        ncva::Array myarray(new ncva::NaiveArray(out_freq.c_str(), true));
 
 		const size_t max = mytrie.size();
 		for(size_t id=0; id!=max; ++id){
 			const std::string key = mytrie.getKey(id);
             const FREQUENCY freq = mymap[key];
-			freqfile.write((char*) &(freq), sizeof(FREQUENCY));
+            myarray.add(freq);
         };
-        freqfile.close();
     };
 
       
@@ -125,6 +125,7 @@ int main(int argc, char **argv) {
     };
     const unsigned int line_num = arg_parser.get<unsigned int>("lines");
     const bool mode = arg_parser.get<bool>("mode");
+    std::cerr << "Mode is " << mode << std::endl;
     ncva::make(output_name, is, line_num, mode);
 
 

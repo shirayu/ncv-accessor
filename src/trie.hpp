@@ -15,7 +15,7 @@
 namespace ncva{
     class TrieImpl {
         public:
-            virtual ~TrieImpl(){}
+            virtual ~TrieImpl(){};
             virtual void save(const char *filename) = 0;
             virtual void build(std::vector<std::string>& keyList) = 0;
             virtual ID_t getID(const std::string &query) = 0;

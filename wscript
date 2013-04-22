@@ -73,7 +73,7 @@ def build(bld):
        includes     = './')
 
     bld(features = 'cxx cprogram',
-        source = ['src/ncva-make.cpp', 'src/trie.cpp'],
+        source = ['src/ncva-make.cpp', 'src/trie.cpp', 'src/array.cpp'],
         target = 'ncva-make',
         cxxflags     = CXXFLAGS,
         use = [
