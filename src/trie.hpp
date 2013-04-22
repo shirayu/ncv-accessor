@@ -10,7 +10,7 @@
 #ifndef HEADER_489c0b4bffc04092b46c7b9ad067af19
 #define HEADER_489c0b4bffc04092b46c7b9ad067af19
 
-#include "ux/src/ux.hpp"
+#include "ux.hpp"
 
 namespace ncva{
     class TrieImpl {

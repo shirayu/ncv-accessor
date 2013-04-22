@@ -5,8 +5,8 @@
 # LICENSE : GNU GENERAL PUBLIC LICENSE Version 3
 
 
-APPNAME = 'yucha'
-VERSION = '1.87'
+APPNAME = 'ncva'
+VERSION = '0.1'
 
 #srcdir = 'src'
 out = 'bin'
@@ -53,8 +53,6 @@ def configure(conf):
     import datetime
     d = datetime.datetime.today()
     DATETIME = d.strftime("%Y-%m-%d %H:%M:%S")
-    conf.define("CONST_YUCHA_VERSION", VERSION)
-    conf.define("CONST_COMF_DATETIME", DATETIME)
 
 
 def build(bld):
@@ -75,11 +73,12 @@ def build(bld):
        includes     = './')
 
     bld(features = 'cxx cprogram',
-        source = ['ncva-make.cpp', 'trie.cpp'],
+        source = ['src/ncva-make.cpp', 'src/trie.cpp'],
         target = 'ncva-make',
         cxxflags     = CXXFLAGS,
         use = [
             'UX',
          ],
+        includes = 'ux/src/',
     )
 
