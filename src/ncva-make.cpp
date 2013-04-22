@@ -89,11 +89,9 @@ namespace ncva{
             const FREQUENCY freq = mymap[key];
             myarray.add(freq);
         };
+        myarray.save();
     };
 
-      
-    void read(const char* input_name){
-    };
 };
 
 
