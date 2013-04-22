@@ -110,7 +110,8 @@ int main(int argc, char **argv) {
     arg_parser.add<std::string>("output", 'o', "The filename to output", true, "");
     arg_parser.add<std::string>("input", 'i', "The filename to input.\n\t'-' means standard input is designated.", true, "");
     arg_parser.add<unsigned int>("lines", 'l', "The number of line", false, 0);
-    arg_parser.add<bool>("mode", 'n', "Switch the mode", false, true);
+    arg_parser.add("mode", 'm', "Switch the mode");
+
         
     arg_parser.parse_check(argc, argv);
 
@@ -124,7 +125,7 @@ int main(int argc, char **argv) {
         is = new std::ifstream (input.c_str());
     };
     const unsigned int line_num = arg_parser.get<unsigned int>("lines");
-    const bool mode = arg_parser.get<bool>("mode");
+    const bool mode = arg_parser.exist("mode");
     std::cerr << "Mode is " << mode << std::endl;
     ncva::make(output_name, is, line_num, mode);
 
