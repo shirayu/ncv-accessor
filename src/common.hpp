@@ -18,6 +18,10 @@ namespace ncva{
     typedef std::tr1::unordered_map<std::string, FREQUENCY> MAP_FREQUENCY;
 
     typedef uint64_t ID_t;
+    enum {
+      NOTFOUND      = 0xFFFFFFFFU,
+      LIMIT_DEFAULT = 0xFFFFFFFFU
+    };
 
 };
 

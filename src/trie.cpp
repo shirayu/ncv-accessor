@@ -30,7 +30,13 @@ namespace ncva{
 
         ID_t UxTrie::getID(const std::string &query){
 			size_t retLen = 0;
-			return this->trie->prefixSearch(query.c_str(), query.size(), retLen);
+            const size_t query_size = query.size();
+			const ID_t id = this->trie->prefixSearch(query.c_str(), query_size, retLen);
+
+            if (retLen == query_size){
+                return id;
+            }
+            return ncva::NOTFOUND;
         };
 
         const std::string UxTrie::getKey(const ID_t id){

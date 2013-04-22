@@ -92,3 +92,14 @@ def build(bld):
         includes = 'ux/src/',
     )
 
+    bld.program(
+            features     = 'gtest',
+            source = ['src/trie-test.cpp', 'src/trie.cpp', 'src/array.cpp'],
+            target = 'trie-test',
+            cxxflags     = CXXFLAGS,
+            use = [
+                'UX',
+             ],
+            includes = 'ux/src/',
+    )
+
