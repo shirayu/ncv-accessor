@@ -13,8 +13,8 @@
 
 
 namespace ncva{
-    typedef unsigned int FREQUENCY;
-    typedef unsigned long int FREQUENCY_LONG;
+    typedef uint32_t FREQUENCY;
+    typedef uint64_t FREQUENCY_LONG;
     typedef std::tr1::unordered_map<std::string, FREQUENCY> MAP_FREQUENCY;
 
     typedef uint64_t ID_t;

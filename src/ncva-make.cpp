@@ -23,10 +23,10 @@ namespace ncva{
         return res;
     }
 
-    void make(const char* output_name, std::istream *is, const unsigned int line_num, const bool mode_VCN){
+    void make(const char* output_name, std::istream *is, const uint32_t line_num, const bool mode_VCN){
         MAP_FREQUENCY mymap;
         FREQUENCY_LONG sum = 0;
-        FREQUENCY_LONG step = 0;
+        uint32_t step = 0;
 
         std::string buf;
         while(std::getline(*is, buf)) {
@@ -36,7 +36,7 @@ namespace ncva{
                 continue;
             };
             if(step % 100000 == 0){
-                fprintf(stderr, "\rStatus : %lu", step);
+                fprintf(stderr, "\rStatus : %u", step);
                 if (line_num != 0){
                     const double percent = (double) step / line_num * 100;
                     fprintf(stderr, "  %0.3f%%", percent);
@@ -47,7 +47,7 @@ namespace ncva{
             const std::string& particle = items[1];
             const std::string& verb = items[2];
             const std::string& freq_word = items[3];
-            const FREQUENCY freq = atoi(freq_word.c_str());
+            const FREQUENCY freq = atoi(freq_word.c_str()); //FIXME change to strtol
         
             if (mode_VCN){
                 mymap[verb] += freq;
@@ -107,7 +107,7 @@ int main(int argc, char **argv) {
      
     arg_parser.add<std::string>("output", 'o', "The filename to output", true, "");
     arg_parser.add<std::string>("input", 'i', "The filename to input.\n\t'-' means standard input is designated.", true, "");
-    arg_parser.add<unsigned int>("lines", 'l', "The number of line", false, 0);
+    arg_parser.add<uint32_t>("lines", 'l', "The number of line", false, 0);
     arg_parser.add("mode", 'm', "Switch the mode");
 
         
@@ -122,7 +122,7 @@ int main(int argc, char **argv) {
     else{
         is = new std::ifstream (input.c_str());
     };
-    const unsigned int line_num = arg_parser.get<unsigned int>("lines");
+    const uint32_t line_num = arg_parser.get<uint32_t>("lines");
     const bool mode = arg_parser.exist("mode");
     std::cerr << "Mode is " << mode << std::endl;
     ncva::make(output_name, is, line_num, mode);
