@@ -7,25 +7,17 @@
 
 #include <fstream>
 
-#include "trie.hpp"
-#include "array.hpp"
+#include "ncva.hpp"
 
-namespace ncva{
-    void read(const char* input_name){
-        const std::string in_trie = std::string(input_name) + ".trie";
-        const std::string in_freq = std::string(input_name) + ".freq";
+void read(const char* input_name){
+    ncva::Ncva ncva(input_name);
 
-        ncva::Trie mytrie(new ncva::UxTrie(in_trie.c_str()));
-        ncva::Array myarray(new ncva::NaiveArray(in_freq.c_str(), false));
-
-        std::string buf;
-        while(std::getline(std::cin, buf)) {
-            const ID_t id = mytrie.getID(buf);
-            const FREQUENCY freq = myarray.get(id);
-            std::cout << id << "\t" << freq << std::endl;
-        };
+    std::string buf;
+    while(std::getline(std::cin, buf)) {
+        const ncva::ID_t id = ncva.getID(buf);
+        const ncva::FREQUENCY freq = ncva.getFreq(id);
+        std::cout << id << "\t" << freq << std::endl;
     };
-
 };
 
 
@@ -44,7 +36,7 @@ int main(int argc, char **argv) {
     arg_parser.parse_check(argc, argv);
 
     const char* input_name = arg_parser.get<std::string>("input").c_str();
-    ncva::read(input_name);
+    read(input_name);
 
     return 0;
 }

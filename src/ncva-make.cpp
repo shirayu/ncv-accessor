@@ -7,8 +7,7 @@
 
 #include <fstream>
 
-#include "trie.hpp"
-#include "array.hpp"
+#include "ncva.hpp"
 
 namespace ncva{
     std::vector<std::string> split(const std::string &str, const char delim){
@@ -63,33 +62,9 @@ namespace ncva{
 
             ++step;
         }
-       
-        /////
-        const std::string out_trie = std::string(output_name) + ".trie";
-        const std::string out_freq = std::string(output_name) + ".freq";
-        std::vector<std::string> tmp;
-        tmp.reserve(mymap.size());
-
-        std::cerr << "Extracting words..." << std::endl;
-        for(MAP_FREQUENCY::const_iterator it=mymap.begin(); it!=mymap.end(); ++it){
-            tmp.push_back(it->first);
-        };
-
-	    std::cerr << "Making trie..." << std::endl;
-        ncva::Trie mytrie(new ncva::UxTrie(NULL));
-        mytrie.build(tmp);
-        mytrie.save(out_trie.c_str());
-
-	    std::cerr << "Making freq..." << std::endl;
-        ncva::Array myarray(new ncva::NaiveArray(out_freq.c_str(), true));
-
-		const size_t max = mytrie.size();
-		for(size_t id=0; id!=max; ++id){
-			const std::string key = mytrie.getKey(id);
-            const FREQUENCY freq = mymap[key];
-            myarray.add(freq);
-        };
-        myarray.save();
+      
+        ncva::Ncva ncva;
+        ncva.make(output_name, mymap);
     };
 
 };

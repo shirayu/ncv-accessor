@@ -72,24 +72,30 @@ def build(bld):
        name         = 'UX',
        includes     = './')
 
-    bld(features = 'cxx cprogram',
-        source = ['src/ncva-make.cpp', 'src/trie.cpp', 'src/array.cpp'],
-        target = 'ncva-make',
+    bld(
+        features = 'cxx cxxstlib',
+        source = ['src/ncva.cpp', 'src/trie.cpp', 'src/array.cpp'],
+        target = 'ncva',
         cxxflags     = CXXFLAGS,
         use = [
             'UX',
          ],
         includes = 'ux/src/',
+        name = 'NCVA',
     )
 
     bld(features = 'cxx cprogram',
-        source = ['src/ncva-read.cpp', 'src/trie.cpp', 'src/array.cpp'],
+        source = ['src/ncva-make.cpp'],
+        target = 'ncva-make',
+        cxxflags     = CXXFLAGS,
+        use = [ 'NCVA', ],
+    )
+
+    bld(features = 'cxx cprogram',
+        source = ['src/ncva-read.cpp'],
         target = 'ncva-read',
         cxxflags     = CXXFLAGS,
-        use = [
-            'UX',
-         ],
-        includes = 'ux/src/',
+        use = [ 'NCVA', ],
     )
 
     bld.program(
@@ -100,6 +106,5 @@ def build(bld):
             use = [
                 'UX',
              ],
-            includes = 'ux/src/',
     )
 

@@ -10,7 +10,29 @@
 
 #include "trie.hpp"
 #include "array.hpp"
+#include "common.hpp"
 
+namespace ncva{
+
+    class Ncva{
+        private:
+            ncva::Trie *mytrie;
+            ncva::Array *myarray;
+        public:
+            Ncva();
+            Ncva(const char* name);
+            ~Ncva(){
+                delete this->mytrie;
+                delete this->myarray;
+            };
+            void open(const char* name);
+            void make(const char* name, const ncva::MAP_FREQUENCY &mymap);
+
+            const ID_t getID(const std::string &query) const;
+            const FREQUENCY getFreq(const ncva::ID_t id) const;
+    };
+
+}
 
 #endif
 
