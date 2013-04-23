@@ -18,6 +18,7 @@ namespace ncva{
         private:
             ncva::Trie *mytrie;
             ncva::Array *myarray;
+            FREQUENCY_LONG sum;
         public:
             Ncva();
             Ncva(const char* name);
@@ -26,7 +27,7 @@ namespace ncva{
                 delete this->myarray;
             };
             void open(const char* name);
-            void make(const char* name, const ncva::MAP_FREQUENCY &mymap);
+            void make(const char* name, const ncva::MAP_FREQUENCY &mymap, const ncva::FREQUENCY_LONG sum);
 
             const ID_t getID(const std::string &query) const;
             const FREQUENCY getFreq(const ncva::ID_t id) const;

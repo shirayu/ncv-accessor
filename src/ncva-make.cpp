@@ -64,7 +64,7 @@ namespace ncva{
         }
       
         ncva::Ncva ncva;
-        ncva.make(output_name, mymap);
+        ncva.make(output_name, mymap, sum);
     };
 
 };

@@ -3,21 +3,32 @@
 
 namespace ncva{
 
-    Ncva::Ncva() : mytrie(NULL), myarray(NULL){
+    Ncva::Ncva() : mytrie(NULL), myarray(NULL), sum(0){
     };
 
-    Ncva::Ncva(const char* name) : mytrie(NULL), myarray(NULL){
+    Ncva::Ncva(const char* name) : mytrie(NULL), myarray(NULL), sum(0){
         const std::string in_trie = std::string(name) + ".trie";
         const std::string in_freq = std::string(name) + ".freq";
+        const std::string in_sum = std::string(name) + ".sum";
 
         this->mytrie = new ncva::Trie(new ncva::UxTrie(in_trie.c_str()));
         this->myarray = new ncva::Array(new ncva::NaiveArray(in_freq.c_str(), false));
+
+        std::ifstream ifs(in_sum.c_str());
+        ifs >> sum;
+        ifs.close();
     };
 
 
-    void Ncva::make(const char* name, const ncva::MAP_FREQUENCY &mymap){
+    void Ncva::make(const char* name, const ncva::MAP_FREQUENCY &mymap, const FREQUENCY_LONG sum){
         const std::string out_trie = std::string(name) + ".trie";
         const std::string out_freq = std::string(name) + ".freq";
+        const std::string out_sum = std::string(name) + ".sum";
+
+        std::ofstream out_f(out_sum.c_str());
+        out_f << sum;
+        out_f.close();
+        
         std::vector<std::string> tmp;
         tmp.reserve(mymap.size());
 
