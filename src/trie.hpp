@@ -21,6 +21,7 @@ namespace ncva{
             virtual ID_t getID(const std::string &query) = 0;
             virtual const std::string getKey(const ID_t id) = 0;
             virtual ID_t size() = 0;
+            virtual std::vector<ID_t> getIDs(const std::string &query) = 0;
     };
 
 
@@ -45,6 +46,9 @@ namespace ncva{
             ID_t size(){
                 return this->impl->size();
             };
+            std::vector<ID_t> getIDs(const std::string &query){
+                return this->impl->getIDs(query);
+            };;
     };
 
 
@@ -59,6 +63,7 @@ namespace ncva{
             ID_t getID(const std::string &query);
             const std::string getKey(const ID_t id);
             ID_t size();
+            std::vector<ID_t> getIDs(const std::string &query);
     };
 
 

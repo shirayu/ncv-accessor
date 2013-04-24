@@ -10,7 +10,7 @@
 
 #include <stdio.h>
 
-const char tempname[] = ".tmp";
+const char tempname[] = "3ab8b0ce-e9b8-4a9c-b4e3-77fd46442801";
 
 TEST(array, make){
     ncva::MAP_FREQUENCY mymap;

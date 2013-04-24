@@ -10,7 +10,7 @@
 
 #include <stdio.h>
 
-const char tempname[] = ".tmp";
+const char tempname[] = "75c4154d-7bb3-4c53-923e-6f486e963eae";
 
 TEST(array, make){
     std::vector<ncva::FREQUENCY> tmp;

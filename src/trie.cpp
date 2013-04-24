@@ -39,6 +39,14 @@ namespace ncva{
             return ncva::NOTFOUND;
         };
 
+        std::vector<ID_t> UxTrie::getIDs(const std::string &query){
+            std::vector<ID_t> retIDs;
+            const size_t query_size = query.size();
+//            const size_t retLen = ;
+            this->trie->predictiveSearch(query.c_str(), query_size, retIDs);
+            return retIDs;
+        };
+
         const std::string UxTrie::getKey(const ID_t id){
 		    const std::string key = this->trie->decodeKey(id);
             return key;

@@ -10,7 +10,7 @@
 
 #include <stdio.h>
 
-const std::string tempname = ".tmp";
+const std::string tempname = "30eb64bf-32f0-4064-9855-75c693a37c3c";
 
 TEST(trie, make){
     std::vector<std::string> tmp;
@@ -51,6 +51,18 @@ TEST(trie, make){
     ASSERT_EQ(str3, trie_str3);
 
     ASSERT_EQ((ncva::ID_t) 3, mytrie2.size());
+
+
+    const std::vector<ncva::ID_t> vec_id1 = mytrie2.getIDs(str1);
+    const std::vector<ncva::ID_t> vec_id2 = mytrie2.getIDs(str2);
+    const std::vector<ncva::ID_t> vec_id3 = mytrie2.getIDs(str3);
+    const std::vector<ncva::ID_t> vec_id40 = mytrie2.getIDs(str40);
+    const std::vector<ncva::ID_t> vec_id41 = mytrie2.getIDs(str41);
+    ASSERT_EQ((size_t) 1, vec_id1.size() );
+    ASSERT_EQ((size_t) 1, vec_id2.size() );
+    ASSERT_EQ((size_t) 2, vec_id3.size() ); //愛, 愛情
+    ASSERT_EQ((size_t) 1, vec_id40.size()); //感謝
+    ASSERT_EQ((size_t) 0, vec_id41.size());
 
     remove(tempname.c_str());
 }
