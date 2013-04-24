@@ -103,8 +103,13 @@ def build(bld):
             source = ['src/trie-test.cpp', 'src/trie.cpp', 'src/array.cpp'],
             target = 'trie-test',
             cxxflags     = CXXFLAGS,
-            use = [
-                'UX',
-             ],
+            use = [ 'UX', ],
+    )
+    bld.program(
+            features     = 'gtest',
+            source = ['src/array-test.cpp', 'src/trie.cpp', 'src/array.cpp'],
+            target = 'array-test',
+            cxxflags     = CXXFLAGS,
+            use = [ 'UX', ],
     )
 
