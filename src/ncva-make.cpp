@@ -8,19 +8,9 @@
 #include <fstream>
 
 #include "ncva.hpp"
+#include "util.hpp"
 
 namespace ncva{
-    std::vector<std::string> split(const std::string &str, const char delim){
-        std::vector<std::string> res;
-        size_t current = 0;
-        size_t found = 0;
-        while((found = str.find_first_of(delim, current)) != std::string::npos){
-            res.push_back(std::string(str, current, found - current));
-            current = found + 1;
-        }
-        res.push_back(std::string(str, current, str.size() - current));
-        return res;
-    }
 
     void make(const char* output_name, std::istream *is, const uint32_t line_num, const bool mode_VCN){
         MAP_FREQUENCY mymap;
