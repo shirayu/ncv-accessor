@@ -26,6 +26,8 @@ void get_argscore(const char* input_name){
         const std::string &exp2 = items[1];
         const ncva::FREQUENCY freq1_base = ncva.getFreq(exp1);
         const ncva::FREQUENCY freq2_base = ncva.getFreq(exp2);
+        const size_t exp1_size = exp1.size();
+        const size_t exp2_size = exp2.size();
 
         const std::vector<ncva::ID_t> ids1 = ncva.getIDs(exp1);
         const std::vector<ncva::ID_t> ids2 = ncva.getIDs(exp2);
@@ -33,17 +35,19 @@ void get_argscore(const char* input_name){
 //        std::cerr << exp2 << " size(2) " << ids2.size() << std::endl;
 
 
-        std::map<ncva::ID_t, double> nmap1;
-        std::map<ncva::ID_t, double> nmap2;
+        std::map<std::string, double> nmap1;
+        std::map<std::string, double> nmap2;
         for (std::vector<ncva::ID_t>::const_iterator it1 = ids1.begin(); it1 != ids1.end(); ++it1){
             const ncva::FREQUENCY freq1 = ncva.getFreq(*it1);
-            nmap1[*it1] = (double) freq1 / freq1_base;
-//            std::cerr << ncva.getKey(*it1) << "\t" << freq1 << std::endl;
+            const std::string key(ncva.getKey(*it1), exp1_size);
+            nmap1[key] = (double) freq1 / freq1_base;
+//            std::cerr << ncva.getKey(*it1) << "\t" << freq1  << "\t" << key << std::endl;
         };
         for (std::vector<ncva::ID_t>::const_iterator it2 = ids2.begin(); it2!=ids2.end(); ++it2){
             const ncva::FREQUENCY freq2 = ncva.getFreq(*it2);
-//            std::cerr << ncva.getKey(*it2) << "\t" << freq2 << std::endl;
-            nmap2[*it2] = (double) freq2 / freq2_base;
+            const std::string key(ncva.getKey(*it2), exp2_size);
+            nmap2[key] = (double) freq2 / freq2_base;
+//            std::cerr << ncva.getKey(*it2) << "\t" << freq2 << "\t" << key <<std::endl;
         };
 
         if(nmap1.size()==0 or nmap2.size()==0){
