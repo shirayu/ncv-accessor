@@ -69,6 +69,7 @@ def build(bld):
        source       = ['ux/src/uxTrie.cpp', 'ux/src/bitVec.cpp',
                         'ux/src/rsDic.cpp',  'ux/src/uxUtil.cpp', 'ux/src/uxMap.cpp',],
        target       = 'ux',
+        cxxflags     = CXXFLAGS + ['-fPIC'],
        name         = 'UX',
        includes     = './')
 
@@ -76,7 +77,7 @@ def build(bld):
         features = 'cxx cxxstlib',
         source = ['src/ncva.cpp', 'src/trie.cpp', 'src/array.cpp'],
         target = 'ncva',
-        cxxflags     = CXXFLAGS,
+        cxxflags     = CXXFLAGS + ['-fPIC'],
         use = [
             'UX',
          ],

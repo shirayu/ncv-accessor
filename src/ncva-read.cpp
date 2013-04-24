@@ -9,14 +9,16 @@
 
 #include "ncva.hpp"
 
-void read(const char* input_name){
-    ncva::Ncva ncva(input_name);
+namespace ncva{
+    void read(const char* input_name){
+        ncva::Ncva ncva(input_name);
 
-    std::string buf;
-    while(std::getline(std::cin, buf)) {
-        const ncva::ID_t id = ncva.getID(buf);
-        const ncva::FREQUENCY freq = ncva.getFreq(id);
-        std::cout << freq << std::endl;
+        std::string buf;
+        while(std::getline(std::cin, buf)) {
+            const ID_t id = ncva.getID(buf);
+            const FREQUENCY freq = ncva.getFreq(id);
+            std::cout << freq << std::endl;
+        };
     };
 };
 
@@ -36,7 +38,7 @@ int main(int argc, char **argv) {
     arg_parser.parse_check(argc, argv);
 
     const char* input_name = arg_parser.get<std::string>("input").c_str();
-    read(input_name);
+    ncva::read(input_name);
 
     return 0;
 }

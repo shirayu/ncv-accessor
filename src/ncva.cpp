@@ -22,7 +22,7 @@ namespace ncva{
     };
 
 
-    void Ncva::make(const char* name, const ncva::MAP_FREQUENCY &mymap, const FREQUENCY_LONG sum){
+    void Ncva::make(const char* name, const MAP_FREQUENCY &mymap, const FREQUENCY_LONG sum){
         const std::string out_trie = std::string(name) + ncva::PREFIX_TRIE;
         const std::string out_freq = std::string(name) + ncva::PREFIX_FREQ;
         const std::string out_sum = std::string(name) + ncva::PREFIX_SUM;
@@ -63,16 +63,16 @@ namespace ncva{
     }
 
 
-    const ncva::ID_t Ncva::getID(const std::string &query) const{
+    const ID_t Ncva::getID(const std::string &query) const{
         return this->mytrie->getID(query);
     };
 
-    const ncva::FREQUENCY Ncva::getFreq(const ncva::ID_t id) const{
+    const FREQUENCY Ncva::getFreq(const ID_t id) const{
         return this->myarray->get(id);
     };
 
-    const ncva::FREQUENCY Ncva::getFreq(const std::string &query) const{
-        const ncva::ID_t id = this->getID(query);
+    const FREQUENCY Ncva::getFreq(const std::string &query) const{
+        const ID_t id = this->getID(query);
         return this->getFreq(id);
     };
 
