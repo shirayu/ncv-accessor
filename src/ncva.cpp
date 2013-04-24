@@ -67,6 +67,15 @@ namespace ncva{
         return this->mytrie->getID(query);
     };
 
+
+    const std::vector<ID_t> Ncva::getIDs(const std::string &query) const{
+        return this->mytrie->getIDs(query);
+    };
+
+    const std::string Ncva::getKey(const ID_t id) const{
+        return this->mytrie->getKey(id);
+    };
+
     const FREQUENCY Ncva::getFreq(const ID_t id) const{
         return this->myarray->get(id);
     };

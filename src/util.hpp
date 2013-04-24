@@ -8,6 +8,8 @@
 #ifndef HEADER_fc5133487d094ff382db2817342790b0
 #define HEADER_fc5133487d094ff382db2817342790b0
 
+#include <cmath>
+
 
 namespace ncva{
 
@@ -23,6 +25,45 @@ namespace ncva{
         return res;
     }
 
+
+    //KL divergence
+    template<typename L, typename M> double KL(const std::map<L, M> &P, const std::map<L,M> &Q){
+        typedef typename std::map<L, M>::const_iterator LM_itr;
+        double val=0;
+        for(LM_itr it=P.begin(); it!=P.end(); ++it){
+            if(Q.count(it->first)!=0){
+                const double tmp = it->second / (double) Q.at(it->first);
+                val +=  it->second  * log(tmp);
+            };			
+        };
+        return val;
+    };
+
+    //JS divergence
+    template<typename L, typename M> double JS(const std::map<L, M> &P, const std::map<L,M> &Q){
+        typedef typename std::map<L, M>::const_iterator LM_itr;
+        double val=0;
+        for(LM_itr it=P.begin(); it!=P.end(); ++it){
+            if(Q.count(it->first)==0){
+                val +=  it->second  * log(2);
+            }
+            else{
+                const double tmp = it->second / ( (double) Q.at(it->first) + it->second );
+                val +=  it->second  * log(2 * tmp);
+            };
+        };
+        for(LM_itr it=Q.begin(); it!=Q.end(); ++it){
+            if(P.count(it->first)==0){
+                val +=  it->second  * log(2);
+            }
+            else{
+                const double tmp = it->second / ( (double) P.at(it->first) + it->second );
+                val +=  it->second  * log(2 * tmp);
+            };
+        };
+        return val / 2 ;
+
+    };
 
 
 };

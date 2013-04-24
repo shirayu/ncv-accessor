@@ -32,6 +32,8 @@ namespace ncva{
             void make(const char* name, const MAP_FREQUENCY &mymap, const FREQUENCY_LONG sum);
 
             const ID_t getID(const std::string &query) const;
+            const std::vector<ID_t> getIDs(const std::string &query) const;
+            const std::string getKey(const ID_t id) const;
             const FREQUENCY getFreq(const ID_t id) const;
             const FREQUENCY getFreq(const std::string &query) const;
 
