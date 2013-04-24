@@ -16,7 +16,7 @@ void read(const char* input_name){
     while(std::getline(std::cin, buf)) {
         const ncva::ID_t id = ncva.getID(buf);
         const ncva::FREQUENCY freq = ncva.getFreq(id);
-        std::cout << id << "\t" << freq << std::endl;
+        std::cout << freq << std::endl;
     };
 };
 
