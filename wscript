@@ -113,3 +113,11 @@ def build(bld):
             use = [ 'UX', ],
     )
 
+    bld.program(
+            features     = 'gtest',
+            source = ['src/ncva-test.cpp', 'src/ncva.cpp', 'src/trie.cpp', 'src/array.cpp'],
+            target = 'ncva-test',
+            cxxflags     = CXXFLAGS,
+            use = [ 'UX', ],
+    )
+

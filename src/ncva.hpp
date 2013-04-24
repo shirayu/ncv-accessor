@@ -13,6 +13,9 @@
 #include "common.hpp"
 
 namespace ncva{
+    const static std::string PREFIX_TRIE = ".trie";
+    const static std::string PREFIX_FREQ = ".freq";
+    const static std::string PREFIX_SUM = ".sum";
 
     class Ncva{
         private:
@@ -31,6 +34,9 @@ namespace ncva{
 
             const ID_t getID(const std::string &query) const;
             const FREQUENCY getFreq(const ncva::ID_t id) const;
+            const FREQUENCY getFreq(const std::string &query) const;
+
+            static int clean(const char*name);
     };
 
 }

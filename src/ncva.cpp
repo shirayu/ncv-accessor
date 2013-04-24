@@ -1,15 +1,17 @@
 
 #include "ncva.hpp"
 
+#include <stdio.h>
+
 namespace ncva{
 
     Ncva::Ncva() : mytrie(NULL), myarray(NULL), sum(0){
     };
 
     Ncva::Ncva(const char* name) : mytrie(NULL), myarray(NULL), sum(0){
-        const std::string in_trie = std::string(name) + ".trie";
-        const std::string in_freq = std::string(name) + ".freq";
-        const std::string in_sum = std::string(name) + ".sum";
+        const std::string in_trie = std::string(name) + ncva::PREFIX_TRIE;
+        const std::string in_freq = std::string(name) + ncva::PREFIX_FREQ;
+        const std::string in_sum = std::string(name) + ncva::PREFIX_SUM;
 
         this->mytrie = new ncva::Trie(new ncva::UxTrie(in_trie.c_str()));
         this->myarray = new ncva::Array(new ncva::NaiveArray(in_freq.c_str(), false));
@@ -21,9 +23,9 @@ namespace ncva{
 
 
     void Ncva::make(const char* name, const ncva::MAP_FREQUENCY &mymap, const FREQUENCY_LONG sum){
-        const std::string out_trie = std::string(name) + ".trie";
-        const std::string out_freq = std::string(name) + ".freq";
-        const std::string out_sum = std::string(name) + ".sum";
+        const std::string out_trie = std::string(name) + ncva::PREFIX_TRIE;
+        const std::string out_freq = std::string(name) + ncva::PREFIX_FREQ;
+        const std::string out_sum = std::string(name) + ncva::PREFIX_SUM;
 
         std::ofstream out_f(out_sum.c_str());
         out_f << sum;
@@ -67,6 +69,22 @@ namespace ncva{
 
     const ncva::FREQUENCY Ncva::getFreq(const ncva::ID_t id) const{
         return this->myarray->get(id);
+    };
+
+    const ncva::FREQUENCY Ncva::getFreq(const std::string &query) const{
+        const ncva::ID_t id = this->getID(query);
+        return this->getFreq(id);
+    };
+
+    int Ncva::clean(const char*name){
+        const std::string in_trie = std::string(name) + ncva::PREFIX_TRIE;
+        const std::string in_freq = std::string(name) + ncva::PREFIX_FREQ;
+        const std::string in_sum = std::string(name) + ncva::PREFIX_SUM;
+
+        const bool ret1 = remove(in_trie.c_str());
+        const bool ret2 = remove(in_freq.c_str());
+        const bool ret3 = remove(in_sum.c_str());
+        return ret1 and ret2 and ret3;
     };
 
 };
