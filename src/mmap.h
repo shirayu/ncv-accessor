@@ -1,8 +1,6 @@
-// CaboCha -- Yet Another Japanese Dependency Parser
-//
-//  $Id: common.h 41 2008-01-20 09:31:34Z taku-ku $;
-//
-//  Copyright(C) 2001-2008 Taku Kudo <taku@chasen.org>
+// Following codes are imported from CaboCha developed by Taku Kudo <taku@chasen.org>
+// The license is new BSD (3-clause) license.
+
 #ifndef CABOCHA_MMAP_H_
 #define CABOCHA_MMAP_H_
 
@@ -47,7 +45,7 @@ extern "C" {
 #endif
 }
 
-#include "common.h"
+#include "common.hpp"
 
 #ifndef O_BINARY
 #define O_BINARY 0
@@ -60,7 +58,7 @@ int close__(int fd) { return close(fd); }
 }
 #endif
 
-namespace CaboCha {
+namespace ncva {
 
 template <class T> class Mmap {
  private:
