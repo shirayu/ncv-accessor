@@ -34,10 +34,7 @@ namespace ncva{
     };
 
     NaiveArray::~NaiveArray(){
-        if (this->mmap_ != NULL){
-            this->mmap_->close();
-            delete this->mmap_;
-        };
+        delete this->mmap_;
         delete this->ofs;
     };
 

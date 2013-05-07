@@ -64,6 +64,7 @@ def configure(conf):
     conf.check_cxx(header_name = 'sys/mman.h')
     conf.check_cxx(header_name = 'unistd.h')
     conf.define('HAVE_CONFIG_H', 1)
+    conf.define('HAVE_MMAP', 1)
     ###
 
 
