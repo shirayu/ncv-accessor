@@ -27,7 +27,7 @@ namespace ncva{
 
     bool NaiveArray::open(const char *filename){
         this->mmap_ = new Mmap<FREQUENCY>;
-        CHECK_FALSE(mmap_->open(filename)) <<  mmap_->what();
+        CHECK_FALSE(mmap_->open(filename));
         this->filesize = this->mmap_->size();
         //                this->mmap->seekg(0, std::ios::beg);  
         return true;

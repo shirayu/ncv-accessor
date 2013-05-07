@@ -65,7 +65,7 @@ template <class T> class Mmap {
   T            *text;
   size_t       length;
   std::string  fileName;
-  whatlog what_;
+//  whatlog what_;
 
 #if defined(_WIN32) && !defined(__CYGWIN__)
   HANDLE hFile;
@@ -83,7 +83,7 @@ template <class T> class Mmap {
   T*       end()           { return text + size(); }
   const T* end()    const  { return text + size(); }
   size_t size()               { return length/sizeof(T); }
-  const char *what()          { return what_.str(); }
+//  const char *what()          { return what_.str(); }
   const char *file_name()     { return fileName.c_str(); }
   size_t file_size()          { return length; }
   bool empty()                { return(length == 0); }

@@ -43,8 +43,8 @@ namespace ncva{
 
 
     class NaiveArray : public ArrayImpl{
-        protected:
-            whatlog what_;
+//        protected:
+//            whatlog what_;
 
         private:
 //            std::ifstream *ifs;

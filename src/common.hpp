@@ -40,51 +40,46 @@ namespace ncva{
 
 
 namespace ncva{
-    class die {
-     public:
-      die() {}
-      ~die() {
-        std::cerr << std::endl;
-        exit(-1);
-      }
-      int operator&(std::ostream&) { return 0; }
-    };
+//    class die {
+//     public:
+//      die() {}
+//      ~die() {
+//        std::cerr << std::endl;
+//        exit(-1);
+//      }
+//      int operator&(std::ostream&) { return 0; }
+//    };
 
-    struct whatlog {
-      std::ostringstream stream_;
-      std::string str_;
-      const char *str() {
-        str_ = stream_.str();
-        return str_.c_str();
-      }
-    };
+//    struct whatlog {
+//      std::ostringstream stream_;
+//      std::string str_;
+//      const char *str() {
+//        str_ = stream_.str();
+//        return str_.c_str();
+//      }
+//    };
 
-    class wlog {
-     public:
-      wlog(whatlog *what) : what_(what) {
-        what_->stream_.clear();
-      }
-      bool operator&(std::ostream &) {
-        return false;
-      }
-     private:
-      whatlog *what_;
-    };
+//    class wlog {
+//     public:
+//      wlog(whatlog *what) : what_(what) {
+//        what_->stream_.clear();
+//      }
+//      bool operator&(std::ostream &) {
+//        return false;
+//      }
+//     private:
+//      whatlog *what_;
+//    };
 }
 
 
 #define WHAT what_.stream_
 
 #define CHECK_FALSE(condition) \
- if (condition) {} else return \
-   wlog(&what_) & what_.stream_ <<              \
+ if (condition) {} else  \
+   std::cerr <<              \
       __FILE__ << "(" << __LINE__ << ") [" << #condition << "] "
 
-#define CHECK_TREE_FALSE(condition) \
- if (condition) {} else return \
-  wlog(tree->allocator()->mutable_what()) & \
-    tree->allocator()->mutable_what()->stream_ << \
-      __FILE__ << "(" << __LINE__ << ") [" << #condition << "] "
 
 #define CHECK_DIE(condition) \
 (condition) ? 0 : die() & std::cerr << __FILE__ << \
