@@ -7,6 +7,8 @@
 #include "common.hpp"
 #include "array.hpp"
 
+#include "mmap.h"
+
 namespace ncva{
 
 
