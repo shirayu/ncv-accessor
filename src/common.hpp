@@ -70,9 +70,6 @@ namespace ncva{
      private:
       whatlog *what_;
     };
-
-
-
 }
 
 
