@@ -57,7 +57,6 @@ namespace ncva{
                     if(buf[i] == '\t'){
                         freq = atoi(buf.substr(i+1).c_str());
                         mymap[buf.substr(0, i)] = freq;
-    std::cerr << freq  << "|\t|" << buf.substr(0, i) << "|" << std::endl;
                         break;
                     };
                 };
