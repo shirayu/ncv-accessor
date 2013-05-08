@@ -36,6 +36,7 @@ TEST(array, make){
     ASSERT_EQ(ncva2.getFreq("orange"), f0);
     ASSERT_EQ(ncva2.getFreq("tomato"), f1);
 
+    ASSERT_EQ(ncva2.getSum(), sum);
 
     const int ret = ncva::Ncva::clean(tempname);
     ASSERT_EQ(ret, 0);

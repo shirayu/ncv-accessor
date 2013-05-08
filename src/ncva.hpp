@@ -37,6 +37,8 @@ namespace ncva{
             const FREQUENCY getFreq(const ID_t id) const;
             const FREQUENCY getFreq(const std::string &query) const;
 
+            const FREQUENCY_LONG getSum() const;
+
             static int clean(const char*name);
     };
 

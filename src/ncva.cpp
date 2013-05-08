@@ -85,6 +85,11 @@ namespace ncva{
         return this->getFreq(id);
     };
 
+
+    const FREQUENCY_LONG Ncva::getSum() const{
+        return this->sum;
+    };
+
     int Ncva::clean(const char*name){
         const std::string in_trie = std::string(name) + ncva::PREFIX_TRIE;
         const std::string in_freq = std::string(name) + ncva::PREFIX_FREQ;

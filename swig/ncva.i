@@ -19,5 +19,10 @@ class Ncva;
     const unsigned int get(const char* query) const{
         return $self->getFreq(query);
     }
+
+    const unsigned long int getTotal() const{
+        return $self->getSum();
+    }
+
 }
 
