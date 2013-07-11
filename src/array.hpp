@@ -8,6 +8,8 @@
 #include "common.hpp"
 #include "fstream"
 
+#include "mmap.h"
+
 #ifndef HEADER_fe0226c0ea8e42d693276dbdb06f7a67
 #define HEADER_fe0226c0ea8e42d693276dbdb06f7a67
 
@@ -41,12 +43,17 @@ namespace ncva{
 
 
     class NaiveArray : public ArrayImpl{
+//        protected:
+//            whatlog what_;
+
         private:
-            std::ifstream *ifs;
+//            std::ifstream *ifs;
+            Mmap<FREQUENCY> *mmap_;
             std::ofstream *ofs;
             size_t filesize;
         public:
             NaiveArray(const char *filename, const bool write);
+            bool open(const char *filename);
             ~NaiveArray();
             void save();
             FREQUENCY get(const ID_t id);

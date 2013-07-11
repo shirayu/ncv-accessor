@@ -16,7 +16,7 @@ import ncva
 
 class Test(unittest.TestCase):
     def setUp(self):
-        self.n = ncva.Ncva("/home/yuta-h/yucha-resource/ncv/bin/mainichi.1")
+        self.n = ncva.Ncva("/home/yuta-h/yucha-resource/ncv/bin/kyoto.1")
         pass
 
     def tearDown(self):
@@ -28,6 +28,7 @@ class Test(unittest.TestCase):
 
         for word in words:
             print self.n.get(word)
+        print self.n.getTotal()
 
 
 

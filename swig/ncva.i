@@ -16,8 +16,13 @@ using namespace std;
 
 class Ncva;
 %extend ncva::Ncva{
-    unsigned int get(const char* query){
+    const unsigned int get(const char* query) const{
         return $self->getFreq(query);
     }
+
+    const unsigned long int getTotal() const{
+        return $self->getSum();
+    }
+
 }
 

@@ -6,7 +6,7 @@
 
 
 APPNAME = 'ncva'
-VERSION = '0.1'
+VERSION = '0.2'
 
 #srcdir = 'src'
 out = 'bin'
@@ -54,6 +54,21 @@ def configure(conf):
     d = datetime.datetime.today()
     DATETIME = d.strftime("%Y-%m-%d %H:%M:%S")
 
+
+    #for mmap
+    conf.check_cxx(header_name = 'sys/types.h')
+    conf.check_cxx(header_name = 'sys/stat.h')
+    conf.check_cxx(header_name = 'fcntl.h')
+    conf.check_cxx(header_name = 'string.h')
+    conf.check_cxx(header_name = 'windows.h', mandatory=False)
+    conf.check_cxx(header_name = 'sys/mman.h')
+    conf.check_cxx(header_name = 'unistd.h')
+    conf.define('HAVE_CONFIG_H', 1)
+    conf.define('HAVE_MMAP', 1)
+    ###
+
+
+    conf.write_config_header('../src/config.h')
 
 def build(bld):
     INCS  = ['ux/src']
